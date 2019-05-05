@@ -1,3 +1,6 @@
+动态sql:  https://www.cnblogs.com/ysocean/p/7289529.html
+
+
 <!--mybatis模糊多条件查询动态sql语句 -->
 把’%#{name}%’改为”%”#{name}”%”:
   <select id="searchStudents" resultType="com.example.entity.StudentEntity"
