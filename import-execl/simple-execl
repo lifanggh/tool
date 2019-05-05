@@ -1,3 +1,7 @@
+
+学习poi:
+http://www.cnblogs.com/huajiezh/p/5467821.html
+
 package com.yq.util;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
