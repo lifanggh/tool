@@ -1,0 +1,31 @@
+<!--mybatis模糊多条件查询动态sql语句 -->
+把’%#{name}%’改为”%”#{name}”%”:
+  <select id="searchStudents" resultType="com.example.entity.StudentEntity"
+        parameterType="com.example.entity.StudentEntity">
+        SELECT * FROM test_student
+     
+ <where>    
+ <if test="age != null and age != '' and compare != null and compare != ''">
+           age 
+       ${compare}
+          #{age}
+         </if>
+   <if test="name != null and name != ''">
+      AND name LIKE "%"#{name}"%"
+   </if> 
+    <if test="address != null and address != ''">
+     AND address LIKE "%"#{address}"%"
+     </if>
+ </where>
+    ORDER BY id
+ </select>
+-------------------------------------------------------------------------------------------------------------
+<!-- 查询条件：创建开始时间 -->
+    <if test="createdBegintime!=null and createdBegintime!=''">
+         AND CREATED &gt;= #{createdBegintime}
+     </if>
+
+<!-- 查询条件：创建结束时间 -->
+   <if test="createdEndtime!=null and createdEndtime!=''">
+        AND CREATED &lt;= #{createdEndtime}
+   </if>
