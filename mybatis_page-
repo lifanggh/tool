@@ -1,0 +1,16 @@
+// 查询所有
+	@Override
+	public EUDataGridResult getItemList(int page, int rows) {
+  	// 分页处理
+		PageHelper.startPage(page, rows);
+		// 查询商品列表
+		TbItemExample tbItemExample = new TbItemExample();
+		List<TbItem> list = itemMapper.selectByExample(tbItemExample);
+		// 创建返回值对象
+		EUDataGridResult result = new EUDataGridResult();
+		result.setRows(list);//把查询出来的数据封装进我们的新建的pojo类。
+		// 取总记录数
+		PageInfo<TbItem> pageInfo = new PageInfo<>(list);//设置总的数量
+		result.setTotal(pageInfo.getTotal());
+		return result;
+	}
