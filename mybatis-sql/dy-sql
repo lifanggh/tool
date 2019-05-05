@@ -3,19 +3,18 @@
   <select id="searchStudents" resultType="com.example.entity.StudentEntity"
         parameterType="com.example.entity.StudentEntity">
         SELECT * FROM test_student
-     
  <where>    
  <if test="age != null and age != '' and compare != null and compare != ''">
            age 
        ${compare}
           #{age}
          </if>
-   <if test="name != null and name != ''">
+  <if test="name != null and name != ''">
       AND name LIKE "%"#{name}"%"
    </if> 
-    <if test="address != null and address != ''">
+  <if test="address != null and address != ''">
      AND address LIKE "%"#{address}"%"
-     </if>
+   </if>
  </where>
     ORDER BY id
  </select>
@@ -29,3 +28,55 @@
    <if test="createdEndtime!=null and createdEndtime!=''">
         AND CREATED &lt;= #{createdEndtime}
    </if>
+-----------------------------------------------------------------------------------------------------------------
+<mapper namespace="studentNamespace">
+	<resultMap type="Student" id="studentMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="sal" column="sal"/>
+	</resultMap>
+ <!-- if where 实现查询 -->
+	<select id="findConditionalStudent" parameterType="map" resultMap="studentMap">
+		select id,name,sal from students
+		<where>
+			<if test="pid !=null">
+				and id=#{pid}
+			</if>
+			<if test="pname !=null">
+				and name=#{pname}
+			</if>
+			<if test="psal !=null">
+				and sal=#{psal}
+			</if>
+		</where>
+	</select>
+  <!--动态sql实现更新 -->
+  <update id="dynamicUpdate" parameterType="map">
+	update students 
+	<set>
+		<if test="pname !=null">
+			name=#{pname},
+		</if>
+		<if test="psal !=null">
+			sal=#{psal},
+		</if>
+	</set>
+	where id=#{pid}
+</update>
+<!-- 动态sql实现in语句批量删除记录-->
+<delete id="dynamicDelete">
+	delete from students where id in 
+	<foreach collection="array" open="(" close=")" separator="," item="arr">
+		#{arr}
+	</foreach>
+</delete>
+<!--集合类方式：-->
+<delete id="dynamicDeleteList">
+	delete from students where id in 
+	<foreach collection="list" open="(" close=")" separator="," item="ids">
+		#{ids}
+	</foreach>
+</delete>
+
+</mapper>
+--------------------- 
