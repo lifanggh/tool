@@ -1,4 +1,13 @@
 //自定义响应结构
+pom.xml:
+  <jackson.version>2.4.2</jackson.version>
+  <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+   </dependency>
+   
+   
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
