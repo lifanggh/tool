@@ -1,0 +1,48 @@
+Pdf导出
+简单操作：
+1.新建document对象 第一个参数是页面大小。接下来的参数分别是左、右、上和下页边距
+Document document = new Document(PageSize.A4, 50, 50, 50, 50); 
+2.建立一个书写器(Writer)与document对象关联，通过书写器(Writer)可以将文档
+写入到磁盘中。
+PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("D:textpdf.pdf"));
+3.打开文档
+document.open();
+4.向文档中添加内容
+//通过 com.lowagie.text.Paragraph 来添加文本。可以用文本及其默认的字体、颜
+色、大小等等设置来创建一个默认段落
+document.add( new Paragraph("dfdifjdifjdifjdif"));
+document.add( new Paragraph("dfdfdfd"));
+5.关闭文档
+document.close();
+
+
+
+
+https://blog.csdn.net/qq_30490591/article/details/53434777
+
+
+https://www.cnblogs.com/blueskyli/p/9921832.html
+
+https://www.cnblogs.com/qlqwjy/p/8213989.html
+https://www.cnblogs.com/xiaoSY-learning/p/5805577.html
+
+<dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>itextpdf</artifactId>
+    <version>5.4.2</version>
+</dependency>
+<dependency>
+    <groupId>com.itextpdf.tool</groupId>
+    <artifactId>xmlworker</artifactId>
+    <version>5.4.1</version>
+</dependency>
+<dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>itext-asian</artifactId>
+    <version>5.2.0</version>
+</dependency>
+<dependency>
+    <groupId>org.xhtmlrenderer</groupId>
+    <artifactId>flying-saucer-pdf</artifactId>
+    <version>9.0.3</version>
+</dependency>
