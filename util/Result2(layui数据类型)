@@ -1,0 +1,75 @@
+package practice;
+public class Result2 {
+    private int code; //状态
+    private long count;  //总数 
+    private String msg;  //消息
+    private Object data;  //数据
+
+    //有参构造方法4
+    public Result2(int code, long count, String msg, Object data) {
+        this.code = code;
+        this.count = count;
+        this.msg = msg;
+        this.data = data;
+    }
+    //有参构造3
+    public Result2(int code, long count, Object data) {
+        this.code = code;
+        this.count = count;
+        this.data = data;
+    }
+
+    public Result2(Object data) {
+        this.code = 200;
+        this.count = count;
+        this.msg = "ok";
+        this.data = data;
+    }
+
+    //无参构造方法
+    public Result2() {
+    }
+
+    //方法
+
+    public static  Result2 buid(long count,Object data){
+           return new Result2(0,count,data);
+    }
+
+    public static Result2 ok(Object data){
+        return  new Result2(data);
+    }
+
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+}
