@@ -1,15 +1,20 @@
+idea创建maven web 项目:https://www.cnblogs.com/1314wamm/p/7475771.html
 
 intellij idea怎么设置软件启动时选择项目进入:
 file---> setting-->Appearance  Behavior--->System Settings-->
 --->startup和shutdown项中有一个reopen last project on startup被勾选上了，我们需要将其勾选掉，然后点击右下角的apply 
 和OK使设置生效使用Intellij 
 -----------------------------------------------------------------------------------------------
+
 idea 向svn 上传项目
 file setting--->version control--->添加项目到SVN （后面选择subversion）--->右击项目点subversion ---》share directory
+
 -------------------------------------------------------------------------------------------------
+
 IDEA从svn导入项目:
 窗口中点VCS------>import into version control------>import into subversion-------->点击'+'输入代码在svn的地址
 ------>输入svn对应的用户名和密码
+
 
  idea中的快捷键:
 https://blog.csdn.net/alik20/article/details/54881003  idea中的快捷键
