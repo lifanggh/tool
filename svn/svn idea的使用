@@ -4,6 +4,7 @@ intellij idea怎么设置软件启动时选择项目进入:
 file---> setting-->Appearance  Behavior--->System Settings-->
 --->startup和shutdown项中有一个reopen last project on startup被勾选上了，我们需要将其勾选掉，然后点击右下角的apply 
 和OK使设置生效使用Intellij 
+查找所有匹配的快捷键 ctrl+N
 -----------------------------------------------------------------------------------------------
 
 idea 向svn 上传项目
