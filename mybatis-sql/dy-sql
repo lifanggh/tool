@@ -1,5 +1,7 @@
 动态sql:  https://www.cnblogs.com/ysocean/p/7289529.html
 
+使用@param 区别是：使用注解xml中可以不用加parameterType
+
 
 <!--mybatis模糊多条件查询动态sql语句 -->
 把’%#{name}%’改为”%”#{name}”%”:
