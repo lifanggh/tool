@@ -1,8 +1,69 @@
 动态sql:  https://www.cnblogs.com/ysocean/p/7289529.html
+https://github.com/Flying9001/campustore/tree/master/webservice/dao/src/main
 
 使用@param 区别是：使用注解xml中可以不用加parameterType
 
+传递单个参数,不使用 @Param 注解
+ //查询某一件商品
+dao: Commodity queryOne(Commodity commodity);
+xml: <select id="queryOne" resultType="Commodity">
+		select *
+		from t_commodity com 
+		where id = #{id}
+	</select>	
+	
+传递单个参数,使用@Param注解
+ //查询某一件商品
+dao: Commodity queryOne(@Param("commodity")Commodity commodity);
+xml:<select id="queryOne" parameterType="com.ljq.cs.entity.Commodity" resultType="Commodity">
+		select *
+		from t_commodity com 
+		where id = #{commodity.id}
+	</select>	
+	
+当使用javaBean作为对象的时候，在写 SQL 语句的时候，必须指定参数类型 parameterType="com.ljq.cs.entity.Commodity"，
+同时在 #{ } 取值的时候不能直接填入 javaBean 的属性，必须这样使用 commodity.id ;否则，会抛出参数类型不匹配异常
 
+//用户登录
+    UserInfo signin(@Param("account")String account,@Param("passcode")String passcode);
+<!-- 用户登录 -->
+    <select id="signin" resultType="UserInfo">
+        select *
+        from t_userinfo info
+        where account=#{account} and passcode=#{passcode}
+    </select>
+ 这里 @Param 中定义的变量名必须和 mapper 中保持一致才可以
+ 
+ 传递多个参数,不使用 @Param 注解
+ 
+  //	搜索用户,对结果进行分页
+   List searchUser(Map<String,Object>);
+
+  使用DAO,UserService.java
+
+ UserInfo userInfo = new UserInfo();
+ Pagination page = new Pagination();
+ Map<String,Object> map = new HashMap<>;
+ map.put("userInfo",userInfo);
+ pam.put("page",page);
+ userService.searchUser(map);
+ 
+ mapper文件userInfomapper.xml
+	<select id="searchUser" parameterType="java.util.Map" resultType="UserInfo">
+		select *
+		from t_userinfo user 
+		where 1 =1
+		<if test="user.uname != null and ''!= user.uname ">
+			and user.uname like '%${userInfo.uname}$%'
+		</if>
+			
+		<if test="page.order != null and page.order == 10" >
+			order by user.id asc
+		</if>
+		limit ${page.pagenum * page.limitnum}, #{page.limitnum}
+		
+	</select>
+------------------------------------------------------------------------------------------------------
 <!--mybatis模糊多条件查询动态sql语句 -->
 把’%#{name}%’改为”%”#{name}”%”:
   <select id="searchStudents" resultType="com.example.entity.StudentEntity"
